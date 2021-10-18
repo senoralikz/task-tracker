@@ -4,11 +4,7 @@ import PropTypes from "prop-types";
 import Button from "./Button";
 
 // destructure props with { } so that way you can type out the prop name only instead of prefacing it with props.
-const Header = ({ title }) => {
-  const onClick = () => {
-    console.log("clicked");
-  };
-
+const Header = ({ title, onAdd, showAdd }) => {
   return (
     // when adding a class attribute in React we must use 'className' instead of 'class'
     <header className="header">
@@ -21,7 +17,11 @@ const Header = ({ title }) => {
       >
         {title}
       </h1>
-      <Button color="green" text="Add" onClick={onClick} />
+      <Button
+        color={showAdd ? "red" : "green"}
+        text={showAdd ? "Close" : "Add"}
+        onClick={onAdd}
+      />
     </header>
   );
 };
