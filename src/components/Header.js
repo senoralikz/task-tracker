@@ -1,10 +1,12 @@
 // importing PropTypes to be able to set type of prop
 import PropTypes from "prop-types";
-
+import { useLocation } from "react-router-dom";
 import Button from "./Button";
 
 // destructure props with { } so that way you can type out the prop name only instead of prefacing it with props.
 const Header = ({ title, onAdd, showAdd }) => {
+  const location = useLocation();
+
   return (
     // when adding a class attribute in React we must use 'className' instead of 'class'
     <header className="header">
@@ -17,11 +19,13 @@ const Header = ({ title, onAdd, showAdd }) => {
       >
         {title}
       </h1>
-      <Button
-        color={showAdd ? "red" : "green"}
-        text={showAdd ? "Close" : "Add"}
-        onClick={onAdd}
-      />
+      {location.pathname === "/" && (
+        <Button
+          color={showAdd ? "red" : "green"}
+          text={showAdd ? "Close" : "Add"}
+          onClick={onAdd}
+        />
+      )}
     </header>
   );
 };
